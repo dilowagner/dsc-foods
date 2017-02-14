@@ -1,2 +1,5 @@
-# MVVMonkey
-Framework MVVM do Monkey Nights para Xamarin.Forms
+# DscFoods
+Project study case with Xamarin and Xamarin.Forms
+
+* Android
+* IOS
