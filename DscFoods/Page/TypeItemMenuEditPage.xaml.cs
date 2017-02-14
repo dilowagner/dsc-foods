@@ -16,7 +16,10 @@ namespace DscFoods.Page
 		public TypeItemMenuEditPage(TypeItemMenu type)
 		{
 			InitializeComponent();
+			PopulateForm(type);
+			RegisterClickCameraButton(idtypeitemenu.Text.Trim());
 
+			RegisterClickAlbumButton();
 		}
 
 		private void PopulateForm(TypeItemMenu typeItem)
@@ -28,7 +31,7 @@ namespace DscFoods.Page
 			photopath.Source = ImageSource.FromFile(typeItem.PhotoPath);
 		}
 
-		private void RegistraClickBotaoAlbum()
+		private void RegisterClickAlbumButton()
 		{
 			BtnAlbum.Clicked += async (sender, args) =>
 			{
@@ -61,7 +64,7 @@ namespace DscFoods.Page
 			};
 		}
 
-		private void RegistraClickBotaoCamera(string idparafoto)
+		private void RegisterClickCameraButton(string idparafoto)
 		{
 			BtnCamera.Clicked += async (sender, args) =>
 			{
