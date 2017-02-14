@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="DscFoods.Page.MenuPage"
+	         Title="Menu de Opções">
+	<StackLayout VerticalOptions="Center">
+		<Button Text="Garçons"
+				Image="waiter_icon.png"
+				Clicked="WaitersOnClicked"/>
+		<Button Text="Entregadores"
+				Image="delivery_icon.png"
+				Clicked="DeliverymanOnClicked"/>
+		<Button Text="Tipo de Itens"
+				Image="typeitemmenu_icon.png"
+				Clicked="TypeItemMenuOnClicked"/>
+	</StackLayout>
+</ContentPage>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DscFoods.Page.DeliverymanListPage">
+  <ContentPage.Content>
+    <StackLayout>
+      <Label Text="Entregadores" VerticalOptions="Center" Font="25" HorizontalOptions="Center"/>
+      <ListView x:Name="lvDeliveries" RowHeight="70">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout Padding="5, 0, 5, 0" Orientation="Vertical">
+                  <Label Text="{Binding Name}" TextColor="Blue" FontSize="Large"/>
+                  <Label Text="{Binding Phone}" TextColor="Green" FontSize="Small"/>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

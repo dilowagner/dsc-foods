@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DscFoods.Page.TypeItemMenuListPage">
+  <ContentPage.Content>
+    <StackLayout>
+      <StackLayout  Padding="5, 20, 5, 20">
+         <Label Text="Tipos de Itens Cardápio" VerticalOptions="Center" Font="25"
+             HorizontalOptions="Center"/>
+      </StackLayout>
+      <ListView x:Name="lvTypesItensMenu" RowHeight="60">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.ContextActions>
+                <MenuItem Clicked="OnUpdateClick" CommandParameter="{Binding .}"
+                   Text="Alterar" />
+                <MenuItem Clicked="OnRemoveClick" CommandParameter="{Binding .}"
+                   Text="Remover" IsDestructive="True" />
+              </ViewCell.ContextActions>
+              <StackLayout Padding="5, 5, 5, 0" Orientation="Horizontal">
+                <Grid>
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <Image Source="{Binding PhotoPath}" Grid.Row="0" Grid.Column="0"/>
+                  <Label Text="{Binding Name}" TextColor="Blue" FontSize="Large"
+                         VerticalOptions="Center" Grid.Row="0" Grid.Column="1" />
+                </Grid>
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
