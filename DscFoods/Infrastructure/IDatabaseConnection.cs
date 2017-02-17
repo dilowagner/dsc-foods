@@ -1,7 +1,9 @@
-﻿using System;
-namespace DscFoods
+﻿using SQLite.Net;
+
+namespace DscFoods.Infrastructure
 {
 	public interface IDatabaseConnection
 	{
+		SQLiteConnection DbConnection();
 	}
 }

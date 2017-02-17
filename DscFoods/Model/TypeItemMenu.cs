@@ -1,10 +1,13 @@
-﻿namespace DscFoods.Model
+﻿using SQLite.Net.Attributes;
+
+namespace DscFoods.Model
 {
 	public class TypeItemMenu
 	{
-		public long Id { get; set; }
+		[PrimaryKey, AutoIncrement]
+		public long? Id { get; set; }
 		public string Name { get; set; }
-		public string PhotoPath { get; set; }
+		public byte[] Photo { get; set; }
 
 		public override bool Equals(object obj)
 		{
