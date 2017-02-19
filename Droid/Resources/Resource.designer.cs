@@ -29,6 +29,8 @@ namespace DscFoods.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::DscFoods.Droid.Resource.Attribute.actionBarSize;
 			global::PCLStorage.Resource.String.ApplicationName = global::DscFoods.Droid.Resource.String.ApplicationName;
 			global::PCLStorage.Resource.String.Hello = global::DscFoods.Droid.Resource.String.Hello;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::DscFoods.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::DscFoods.Droid.Resource.String.Hello;
 		}
 		
 		public partial class Animation

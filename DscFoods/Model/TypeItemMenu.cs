@@ -1,4 +1,6 @@
-﻿using SQLite;
+﻿using System.Collections.Generic;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace DscFoods.Model
 {
@@ -8,6 +10,9 @@ namespace DscFoods.Model
 		public long Id { get; set; }
 		public string Name { get; set; }
 		public byte[] Photo { get; set; }
+
+		[Ignore, OneToMany]
+		public List<ItemMenu> Itens { get; set; }
 
 		public override bool Equals(object obj)
 		{
