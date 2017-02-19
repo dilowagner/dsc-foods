@@ -7,12 +7,11 @@ namespace DscFoods.Page
 {
 	public partial class TypeItemMenuListPage : ContentPage
 	{
-		private TypeItemMenuDAL dalTypeItensMenu = TypeItemMenuDAL.GetInstance();
+		private TypeItemMenuDAL dalTypeItensMenu = new TypeItemMenuDAL(DependencyService.Get<IFileHelper>().GetLocalFilePath());
 
 		public TypeItemMenuListPage()
 		{
 			InitializeComponent();
-			lvTypesItensMenu.ItemsSource = dalTypeItensMenu.GetAll();
 		}
 
 		public async void OnUpdateClick(object sender, EventArgs e)
@@ -30,8 +29,15 @@ namespace DscFoods.Page
 				"Confirma excluir o item " + item.Name.ToUpper() + "?", "Sim", "Não");
 			if (opcao)
 			{
-				dalTypeItensMenu.Remove(item);
+				dalTypeItensMenu.DeleteById(item.Id);
+				lvTypesItensMenu.ItemsSource = dalTypeItensMenu.GetAll();
 			}
+		}
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			lvTypesItensMenu.ItemsSource = dalTypeItensMenu.GetAll();
 		}
 	}
 }

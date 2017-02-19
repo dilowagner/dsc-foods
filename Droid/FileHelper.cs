@@ -8,10 +8,10 @@ namespace DscFoods.Droid
 {
 	public class FileHelper : IFileHelper
 	{
-		public string GetLocalFilePath(string filename)
+		public string GetLocalFilePath()
 		{
 			string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-			return Path.Combine(path, filename);
+			return Path.Combine(path, "DscFoodsDb.db3");
 		}
 	}
 }

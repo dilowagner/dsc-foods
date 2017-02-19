@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:conv="clr-namespace:DscFoods.Converters;assembly=DscFoods"
              x:Class="DscFoods.Page.TypeItemMenuListPage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <conv:ByteToImageSourceConverter x:Key="convImage"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
   <ContentPage.Content>
     <StackLayout>
       <StackLayout  Padding="5, 20, 5, 20">
@@ -27,7 +33,9 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="Auto"/>
                   </Grid.ColumnDefinitions>
-                  <Image Source="{Binding PhotoPath}" Grid.Row="0" Grid.Column="0"/>
+                  <Image Source="{Binding Photo, Converter={StaticResource convImage}}" 
+						 Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand"/>
                   <Label Text="{Binding Name}" TextColor="Blue" FontSize="Large"
                          VerticalOptions="Center" Grid.Row="0" Grid.Column="1" />
                 </Grid>

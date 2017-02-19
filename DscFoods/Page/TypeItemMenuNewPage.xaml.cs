@@ -1,17 +1,17 @@
 ﻿using System;
 using Plugin.Media;
-using System.Linq;
 using DscFoods.DAL;
 using DscFoods.Model;
 using Xamarin.Forms;
 using PCLStorage;
+using System.IO;
 
 namespace DscFoods.Page
 {
 	public partial class TypeItemMenuNewPage : ContentPage
 	{
-		private TypeItemMenuDAL types = TypeItemMenuDAL.GetInstance();
-		private string filePath;
+		private TypeItemMenuDAL dalTypeItensMenu = new TypeItemMenuDAL(DependencyService.Get<IFileHelper>().GetLocalFilePath());
+		private byte[] photos;
 
 		public TypeItemMenuNewPage()
 		{
@@ -43,38 +43,18 @@ namespace DscFoods.Page
 				if (file == null)
 					return;
 
-				/* Nas instruções abaixo é feito uso dos components PCLStorage
-                   e PCLSpecialFolder */
-
-				// Recupera o arquivo com base no caminho da foto selecionada
-				var getArquivoPCL = FileSystem.Current.GetFileFromPathAsync(file.Path);
-
-				// Recupera o caminho raiz da aplicação no dispositivo
-				var rootFolder = FileSystem.Current.LocalStorage;
-
-				/* Caso a pasta Fotos não exista, ela é criada para 
-                   armazenamento da foto selecionada */
-				var folderFoto = await rootFolder.CreateFolderAsync("Fotos", CreationCollisionOption.OpenIfExists);
-
-				// Cria o arquivo referente a foto selecionada
-				var setArquivoPCL = folderFoto.CreateFileAsync(getArquivoPCL.Result.Name, CreationCollisionOption.ReplaceExisting);
-
-				// Faz a leitura do arquivo em bytes, para que ele possa ser escrito
-				var arquivoLido = getArquivoPCL.Result.ReadAllTextAsync();
-
-				// Escreve o arquivo fisicamente
-				var arquivoEscrito = setArquivoPCL.Result.WriteAllTextAsync(arquivoLido.Result);
-
-				// Guarda o caminho do arquivo para ser utilizado na gravação do item criado
-				filePath = setArquivoPCL.Result.Path;
+				var stream = file.GetStream();
+				var memoryStream = new MemoryStream();
+				stream.CopyTo(memoryStream);
 
 				// Recupera o arquivo selecionado e o atribui ao controle no formulário
 				photopath.Source = ImageSource.FromStream(() =>
 				{
-					var stream = file.GetStream();
+					var s = file.GetStream();
 					file.Dispose();
-					return stream;
+					return s;
 				});
+				photos = memoryStream.ToArray();
 			};
 		}
 
@@ -108,16 +88,18 @@ namespace DscFoods.Page
 				if (file == null)
 					return;
 
-				// Armazena o caminho da foto para ser utilizado na gravação do item
-				filePath = file.Path;
+				var stream = file.GetStream();
+				var memoryStream = new MemoryStream();
+				stream.CopyTo(memoryStream);
 
-				// Recupera a foto e a atribui para o controle visual
+				// Recupera o arquivo selecionado e o atribui ao controle no formulário
 				photopath.Source = ImageSource.FromStream(() =>
 				{
-					var stream = file.GetStream();
+					var s = file.GetStream();
 					file.Dispose();
-					return stream;
+					return s;
 				});
+				photos = memoryStream.ToArray();
 			};
 		}
 
@@ -131,11 +113,10 @@ namespace DscFoods.Page
 			}
 			else
 			{
-				types.Add(new TypeItemMenu()
+				dalTypeItensMenu.Add(new TypeItemMenu()
 				{
-					Id = Convert.ToUInt32(idtypeitemmenu.Text),
 					Name = name.Text,
-					//Photo = filePath
+					Photo = photos
 				});
 				PrepareNewTypeItemMenu();
 			}
@@ -143,8 +124,6 @@ namespace DscFoods.Page
 
 		private void PrepareNewTypeItemMenu()
 		{
-			var newId = types.GetAll().Max(x => x.Id) + 1;
-			idtypeitemmenu.Text = newId.ToString().Trim();
 			name.Text = string.Empty;
 			photopath.Source = null;
 		}

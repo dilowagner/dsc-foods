@@ -11,7 +11,7 @@ namespace DscFoods.Page
 	{
 		private TypeItemMenu type;
 		private string filePath;
-		private TypeItemMenuDAL types = TypeItemMenuDAL.GetInstance();
+		private TypeItemMenuDAL dalTypeItensMenu = new TypeItemMenuDAL(DependencyService.Get<IFileHelper>().GetLocalFilePath());
 
 		public TypeItemMenuEditPage(TypeItemMenu type)
 		{
@@ -102,7 +102,7 @@ namespace DscFoods.Page
 				this.type.Name = name.Text;
 				//this.type.Photo = filePath;
 
-				types.Update(this.type);
+				dalTypeItensMenu.Update(this.type);
 				await Navigation.PopModalAsync();
 			}
 		}

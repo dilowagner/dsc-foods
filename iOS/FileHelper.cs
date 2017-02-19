@@ -8,7 +8,7 @@ namespace DscFoods.iOS
 {
 	public class FileHelper : IFileHelper
 	{
-		public string GetLocalFilePath(string filename)
+		public string GetLocalFilePath()
 		{
 			string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 			string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
@@ -18,7 +18,7 @@ namespace DscFoods.iOS
 				Directory.CreateDirectory(libFolder);
 			}
 
-			return Path.Combine(libFolder, filename);
+			return Path.Combine(libFolder, "DscFoodsDb.db3");
 		}
 	}
 }

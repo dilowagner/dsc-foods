@@ -1,76 +1,43 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using DscFoods.Model;
+using SQLite;
+using System.Linq;
 
 namespace DscFoods.DAL
 {
 	public class TypeItemMenuDAL
 	{
-		private ObservableCollection<TypeItemMenu> Types = new ObservableCollection<TypeItemMenu>();
-		private static TypeItemMenuDAL TypeItemMenuInstance = new TypeItemMenuDAL();
+		private readonly SQLiteConnection database;
 
-		public TypeItemMenuDAL()
+		public TypeItemMenuDAL(string dbPath)
 		{
-			Types.Add(new TypeItemMenu()
-			{
-				Id = 1,
-				Name = "Pizza",
-				//Photo = "pizzas.png"
-			});
-			Types.Add(new TypeItemMenu()
-			{
-				Id = 2,
-				Name = "Bebidas",
-				//Photo = "bebidas.png"
-			});
-			Types.Add(new TypeItemMenu()
-			{
-				Id = 3,
-				Name = "Saladas",
-				//Photo = "saladas.png"
-			});
-			Types.Add(new TypeItemMenu()
-			{
-				Id = 4,
-				Name = "Sanduíches",
-				//Photo = "sanduiches.png"
-			});
-			Types.Add(new TypeItemMenu()
-			{
-				Id = 5,
-				Name = "Sobremesas",
-				//Photo = "sobremesas.png"
-			});
-			Types.Add(new TypeItemMenu()
-			{
-				Id = 6,
-				Name = "Carnes",
-				//Photo = "carnes.png"
-			});
+			database = new SQLiteConnection(dbPath);
+			database.CreateTable<TypeItemMenu>();
 		}
 
-		public static TypeItemMenuDAL GetInstance()
+		public IEnumerable<TypeItemMenu> GetAll()
 		{
-			return TypeItemMenuInstance;
-
+			return (from t in database.Table<TypeItemMenu>() select t).OrderBy(i => i.Name).ToList();
 		}
-		public ObservableCollection<TypeItemMenu> GetAll()
+
+		public TypeItemMenu GetItemById(long id)
 		{
-			return Types;
+			return database.Table<TypeItemMenu>().FirstOrDefault(t => t.Id == id);
+		}
+
+		public void DeleteById(long id)
+		{
+			database.Delete<TypeItemMenu>(id);
 		}
 
 		public void Add(TypeItemMenu type)
 		{
-			this.Types.Add(type);
-		}
-
-		public void Remove(TypeItemMenu type)
-		{
-			this.Types.Remove(type);
+			database.Insert(type);
 		}
 
 		public void Update(TypeItemMenu type)
 		{
-			this.Types[this.Types.IndexOf(type)] = type;
+			database.Update(type);
 		}
 	}
 }

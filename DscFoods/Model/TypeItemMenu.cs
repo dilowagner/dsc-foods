@@ -2,11 +2,10 @@
 
 namespace DscFoods.Model
 {
-	[Table("TypeItemMenuEntitiy")]
 	public class TypeItemMenu
 	{
 		[PrimaryKey, AutoIncrement]
-		public long? Id { get; set; }
+		public long Id { get; set; }
 		public string Name { get; set; }
 		public byte[] Photo { get; set; }
 
