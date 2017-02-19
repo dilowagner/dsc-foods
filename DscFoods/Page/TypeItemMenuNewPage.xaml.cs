@@ -135,7 +135,7 @@ namespace DscFoods.Page
 				{
 					Id = Convert.ToUInt32(idtypeitemmenu.Text),
 					Name = name.Text,
-					PhotoPath = filePath
+					//Photo = filePath
 				});
 				PrepareNewTypeItemMenu();
 			}

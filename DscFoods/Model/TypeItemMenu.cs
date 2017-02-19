@@ -1,7 +1,8 @@
-﻿using SQLite.Net.Attributes;
+﻿using SQLite;
 
 namespace DscFoods.Model
 {
+	[Table("TypeItemMenuEntitiy")]
 	public class TypeItemMenu
 	{
 		[PrimaryKey, AutoIncrement]
@@ -12,7 +13,7 @@ namespace DscFoods.Model
 		public override bool Equals(object obj)
 		{
 			TypeItemMenu type = obj as TypeItemMenu;
-			if (type == null) 
+			if (type == null)
 			{
 				return false;
 			}

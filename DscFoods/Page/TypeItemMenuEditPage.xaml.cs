@@ -27,8 +27,8 @@ namespace DscFoods.Page
 			this.type = typeItem;
 			idtypeitemenu.Text = typeItem.Id.ToString();
 			name.Text = typeItem.Name;
-			filePath = typeItem.PhotoPath;
-			photopath.Source = ImageSource.FromFile(typeItem.PhotoPath);
+			//filePath = typeItem.Photo;
+			//photopath.Source = ImageSource.FromFile(typeItem.Photo);
 		}
 
 		private void RegisterClickAlbumButton()
@@ -100,7 +100,7 @@ namespace DscFoods.Page
 			else
 			{
 				this.type.Name = name.Text;
-				this.type.PhotoPath = filePath;
+				//this.type.Photo = filePath;
 
 				types.Update(this.type);
 				await Navigation.PopModalAsync();

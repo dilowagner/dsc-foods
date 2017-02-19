@@ -14,37 +14,37 @@ namespace DscFoods.DAL
 			{
 				Id = 1,
 				Name = "Pizza",
-				PhotoPath = "pizzas.png"
+				//Photo = "pizzas.png"
 			});
 			Types.Add(new TypeItemMenu()
 			{
 				Id = 2,
 				Name = "Bebidas",
-				PhotoPath = "bebidas.png"
+				//Photo = "bebidas.png"
 			});
 			Types.Add(new TypeItemMenu()
 			{
 				Id = 3,
 				Name = "Saladas",
-				PhotoPath = "saladas.png"
+				//Photo = "saladas.png"
 			});
 			Types.Add(new TypeItemMenu()
 			{
 				Id = 4,
 				Name = "Sanduíches",
-				PhotoPath = "sanduiches.png"
+				//Photo = "sanduiches.png"
 			});
 			Types.Add(new TypeItemMenu()
 			{
 				Id = 5,
 				Name = "Sobremesas",
-				PhotoPath = "sobremesas.png"
+				//Photo = "sobremesas.png"
 			});
 			Types.Add(new TypeItemMenu()
 			{
 				Id = 6,
 				Name = "Carnes",
-				PhotoPath = "carnes.png"
+				//Photo = "carnes.png"
 			});
 		}
 
