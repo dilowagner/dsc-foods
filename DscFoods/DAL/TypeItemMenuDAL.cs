@@ -20,6 +20,11 @@ namespace DscFoods.DAL
 			return (from t in database.Table<TypeItemMenu>() select t).OrderBy(i => i.Name).ToList();
 		}
 
+		public IEnumerable<TypeItemMenu> GetAllWithChildren()
+		{
+			return (from t in database.Table<TypeItemMenu>() select t).OrderBy(i => i.Name).ToList();
+		}
+
 		public TypeItemMenu GetItemById(long id)
 		{
 			return database.Table<TypeItemMenu>().FirstOrDefault(t => t.Id == id);

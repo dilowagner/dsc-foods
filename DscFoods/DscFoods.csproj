@@ -57,6 +57,9 @@
     <EmbeddedResource Include="Page\TypeItemMenuNewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Page\ItensMenu\ItensMenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -100,6 +103,11 @@
     <Compile Include="IFileHelper.cs" />
     <Compile Include="Converters\ByteToImageSourceConverter.cs" />
     <Compile Include="Model\ItemMenu.cs" />
+    <Compile Include="Page\ItensMenu\ItensMenuPage.xaml.cs">
+      <DependentUpon>ItensMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\ItemMenuDAL.cs" />
+    <Compile Include="HelperControls\ListViewGrouping.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -150,6 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+    <Folder Include="Page\ItensMenu\" />
+    <Folder Include="HelperControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.3.180\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
